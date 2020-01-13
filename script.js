@@ -11,6 +11,12 @@ for (let i = 0; i < (16*16); i++) {
 
 const hover = document.querySelectorAll('.row');
 
-hover.addEventListener('mouseenter', () => {
-    hover.style.backgroundColor = 'blue';
-})
+hover.forEach((div) => {
+        div.addEventListener('mouseover', () => {
+            div.style.backgroundColor = 'red';
+    });
+        div.addEventListener('mouseleave', () => {
+            div.style.backgroundColor = 'transparent';
+        });
+});
+
