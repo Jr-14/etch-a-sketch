@@ -12,28 +12,25 @@ setGridArea.addEventListener('click', () => {
     createGrid(gridSize);
 });
 
-
-function createGrid (gridArea) {
+//Create a square grid
+function createGrid (gridWidth) {
     deleteGrid();
     
-    for (let i = 0; i < (gridArea*gridArea); i++) {
+    for (let i = 0; i < (gridWidth*gridWidth); i++) {
         const div = document.createElement("div");
         div.classList.add("row");
         div.textContent = "";
-        
         container.style.display = 'grid';
-        container.style.width = '960px';
-        container.style.gridTemplateColumns = 'repeat(' + gridArea + ', 1fr)';
-        container.style.gridAutoRows = (960/gridArea)+'px';
+        container.style.width = '1024px';
+        container.style.gridTemplateColumns = 'repeat(' + gridWidth + ', 1fr)';
+        container.style.gridAutoRows = (1024/gridWidth)+'px';
         container.appendChild(div);
-
-        
     }
-
     createMouseHover();
 }
 
 
+//Mouse Hover State for the grid
 function createMouseHover () {
     const row = document.querySelectorAll('.row');
     row.forEach((div) => {
@@ -43,6 +40,7 @@ function createMouseHover () {
     });
 }
 
+//Delete Grid Function
 function deleteGrid () {
     const row = document.querySelectorAll('.row');
     row.forEach((div) => {
@@ -50,8 +48,10 @@ function deleteGrid () {
     });
 }
 
-
-//Delete Grid
+//Delete Grid Reset Button Click
 deleteGridArea.addEventListener('click', () => {
     deleteGrid();
+    createGrid(initialGridSize);
 });
+
+createGrid(initialGridSize);
