@@ -1,22 +1,16 @@
 const container = document.querySelector("#container");
 
-function createDiv () {
-    let div = document.createElement("div");
-    return div;
-}
 
-
-for (let i = 0; i < 16; i++) {
+//Create 256 (16 x 16) div rows
+for (let i = 0; i < (16*16); i++) {
     const div = document.createElement("div");
     div.classList.add("row");
-    div.textContent = "Row " + i;
+    div.textContent = i;
     container.appendChild(div);
 }
 
-const rows = document.querySelectorAll(".row");
+const hover = document.querySelectorAll('.row');
 
-rows.forEach((div) => {
-    for (let i = 0; i < 16; i++) {
-        div.appendChild(createDiv());
-    }
-});
+hover.addEventListener('mouseenter', () => {
+    hover.style.backgroundColor = 'blue';
+})
