@@ -1,4 +1,4 @@
-var initialGridSize = 32;
+var initialGridSize = 64;
 var gridExists;
 var gridSize;
 var enableDraw = false;
@@ -32,8 +32,7 @@ function createGrid (gridWidth) {
     draw();
 }
 
-
-//Mouse 
+//Mouse draw
 function draw () {
     const row = document.querySelectorAll('.row');
     row.forEach((div) => {
