@@ -1,6 +1,7 @@
-var initialGridSize = 16;
+var initialGridSize = 32;
 var gridExists;
 var gridSize;
+var enableDraw = false;
 
 const container = document.querySelector("#container");
 const setGridArea = document.querySelector("#btn");
@@ -16,26 +17,39 @@ setGridArea.addEventListener('click', () => {
 function createGrid (gridWidth) {
     deleteGrid();
     
+    //Create the number div-cells
     for (let i = 0; i < (gridWidth*gridWidth); i++) {
         const div = document.createElement("div");
         div.classList.add("row");
         div.textContent = "";
-        container.style.display = 'grid';
-        container.style.width = '1024px';
-        container.style.gridTemplateColumns = 'repeat(' + gridWidth + ', 1fr)';
-        container.style.gridAutoRows = (1024/gridWidth)+'px';
         container.appendChild(div);
     }
-    createMouseHover();
+
+    container.style.display = 'grid';
+    container.style.width = '1024px';
+    container.style.gridTemplateColumns = 'repeat(' + gridWidth + ', 1fr)';
+    container.style.gridAutoRows = (1024/gridWidth)+'px';
+    draw();
 }
 
 
-//Mouse Hover State for the grid
-function createMouseHover () {
+//Mouse 
+function draw () {
     const row = document.querySelectorAll('.row');
     row.forEach((div) => {
         div.addEventListener('mouseover', () => {
-            div.style.backgroundColor = 'lightblue';
+            if(enableDraw) {
+                div.style.backgroundColor = 'lightblue';
+            }
+        });
+        div.addEventListener('mousedown', () => {
+            enableDraw = true;
+            if (enableDraw) {
+                div.style.backgroundColor = 'lightblue';
+            }
+        });
+        div.addEventListener('mouseup', () => {
+            enableDraw = false;
         });
     });
 }
